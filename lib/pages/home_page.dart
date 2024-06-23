@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelappg8/constants/constants.dart';
 import 'package:travelappg8/widgets/card_travel.dart';
+import 'package:travelappg8/widgets/tile_travel.dart';
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -59,7 +60,32 @@ class HomePage extends StatelessWidget {
                 "Country",
                 style: subTituloStyle,
               ),
-              CardTravel(),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CardTravel(),
+                    CardTravel(),
+                    CardTravel(),
+                  ],
+                ),
+              ),
+              Text(
+                "Popular tours",
+                style: subTituloStyle,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TileTravel(),
+                      TileTravel(),
+                      TileTravel(),
+                      TileTravel(),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
