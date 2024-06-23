@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:travelappg8/models/country_model.dart';
 
 class CardTravel extends StatelessWidget {
+  CountryModel country;
+
+  CardTravel(this.country);
+
   Widget _buildFotos() {
     return Stack(
       clipBehavior: Clip.none,
@@ -56,12 +61,12 @@ class CardTravel extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Thailand",
+              country.nombre,
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 4),
             Text(
-              "18 tours",
+              country.toursList.length.toString(),
               style: TextStyle(color: Colors.white),
             )
           ],
@@ -75,7 +80,7 @@ class CardTravel extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "4.5",
+                country.rating.toString(),
                 style: TextStyle(color: Colors.white),
               ),
               Icon(
@@ -106,7 +111,7 @@ class CardTravel extends StatelessWidget {
               BlendMode.srcATop,
             ),
             image: NetworkImage(
-              "https://media.istockphoto.com/id/1011241694/es/foto/barco-longtail-madera-tradicional-tailandés-y-la-hermosa-playa-de-arena.jpg?s=612x612&w=0&k=20&c=d0c5ErnZP-59whs2UpT4-RY_EYxn46WqURegnuv47Uk=",
+              country.imageUrl,
             ),
           ),
         ),
