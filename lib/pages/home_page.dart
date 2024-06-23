@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelappg8/constants/constants.dart';
 import 'package:travelappg8/models/country_model.dart';
+import 'package:travelappg8/models/tour_model.dart';
 import 'package:travelappg8/servides/service_data.dart';
 import 'package:travelappg8/widgets/card_travel.dart';
 import 'package:travelappg8/widgets/tile_travel.dart';
@@ -102,18 +103,47 @@ class _HomePageState extends State<HomePage> {
                 "Popular tours",
                 style: subTituloStyle,
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TileTravel(),
-                      TileTravel(),
-                      TileTravel(),
-                      TileTravel(),
-                    ],
-                  ),
-                ),
-              )
+
+              FutureBuilder(
+                future: _serviceData.getPopularTours(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    List<TourModel> tourAuxList = snapshot.data;
+                    return Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children:
+                              tourAuxList.map((e) => TileTravel()).toList(),
+                        ),
+                      ),
+                    );
+                  }
+                  return Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              ),
+
+              // Expanded(
+              //   child: SingleChildScrollView(
+              //     child: FutureBuilder(
+              //       future: _serviceData.getPopularTours(),
+              //       builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //         return;
+              //       },
+              //     ),
+              // child: Column(
+              //   children: [
+              //     TileTravel(),
+              //     TileTravel(),
+              //     TileTravel(),
+              //     TileTravel(),
+              //   ],
+              // ),
+              // ),
+              // )
             ],
           ),
         ),
