@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:travelappg8/models/tour_model.dart';
 
 class TileTravel extends StatelessWidget {
+  TourModel tourModel;
+
+  TileTravel(this.tourModel);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,8 +31,7 @@ class TileTravel extends StatelessWidget {
                     BlendMode.srcATop,
                   ),
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://humanidades.com/wp-content/uploads/2018/09/Per%C3%BA-5-e1578616930994-800x416.jpg"),
+                  image: NetworkImage(tourModel.imageUrl),
                 ),
               ),
             ),
@@ -37,7 +41,7 @@ class TileTravel extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Thailand',
+                    tourModel.ciudad,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xff64766f),
@@ -47,7 +51,7 @@ class TileTravel extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    '10 nights all included',
+                    tourModel.descripcion,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xff64766f),
@@ -56,7 +60,7 @@ class TileTravel extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    '\$250.00',
+                    '\$ ${tourModel.precio}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xff64766f),
@@ -82,7 +86,7 @@ class TileTravel extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "4.5",
+                      tourModel.rating.toString(),
                       style: TextStyle(
                         color: Colors.white,
                       ),

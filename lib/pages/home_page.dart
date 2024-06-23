@@ -86,7 +86,6 @@ class _HomePageState extends State<HomePage> {
               ),
               variable.isEmpty
                   ? Container(
-                      padding: EdgeInsets.all(80),
                       height: 200,
                       width: double.infinity,
                       child: Center(
@@ -113,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                       child: SingleChildScrollView(
                         child: Column(
                           children:
-                              tourAuxList.map((e) => TileTravel()).toList(),
+                              tourAuxList.map((e) => TileTravel(e)).toList(),
                         ),
                       ),
                     );
